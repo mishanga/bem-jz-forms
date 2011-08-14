@@ -42,7 +42,7 @@ blocks/i-jz-forms/i-jz-forms.js:	src/JZ.js \
 									src/JZ/Builder.js \
 									src/JZ/Resources.js \
 									src/init.js
-	touch $@
+	mkdir -p blocks/i-jz-forms
 	cat $^ > $@
 
 %.js:
