@@ -56,5 +56,13 @@ blocks/i-jz-forms/i-jz-forms.js: $(addprefix src/,\
 	mkdir -p $(@D)
 	cat $^ > $@
 
+DO_GIT=@echo git $1 $2; \
+	if [ -d $2 ]; \
+		then \
+			cd $2 && git pull origin master; \
+		else \
+			git clone $1 $2; \
+	fi
+
 src:
-	svn co http://jz-forms.googlecode.com/svn/trunk/js/ $@
+	$(call DO_GIT,git://github.com/mishanga/jz-forms.git,$@)
