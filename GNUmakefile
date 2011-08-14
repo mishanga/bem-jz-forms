@@ -1,64 +1,60 @@
 all: i-jz-forms
 
-i-jz-forms: blocks/i-jz-forms blocks/i-jquery
+i-jz-forms :: src
+i-jz-forms :: blocks/i-jz-forms blocks/i-jquery
 
-blocks/i-jquery: 	src \
-					blocks/i-jquery/__memoize/i-jquery__memoize.js \
-					blocks/i-jquery/__fieldselection/i-jquery__fieldselection.js
+JQUERY_FILES=$(foreach I,memoize fieldselection,blocks/i-jquery/__$I/i-jquery__$I.js)
 
-blocks/i-jquery/__memoize/i-jquery__memoize.js:
-	mkdir -p blocks/i-jquery/__memoize
-	cp src/jquery/jquery.memoize.js blocks/i-jquery/__memoize/i-jquery__memoize.js
+blocks/i-jquery: $(JQUERY_FILES)
 
-blocks/i-jquery/__fieldselection/i-jquery__fieldselection.js:
-	mkdir -p blocks/i-jquery/__fieldselection
-	cp src/jquery/jquery.fieldselection.js blocks/i-jquery/__fieldselection/i-jquery__fieldselection.js
+$(JQUERY_FILES):
+	mkdir -p $(@D)
+	cp src/jquery/$(subst i-jquery__,jquery.,$(@F)) $@
 
-blocks/i-jz-forms: src blocks/i-jz-forms/i-jz-forms.js
+blocks/i-jz-forms: blocks/i-jz-forms/i-jz-forms.js
 
-blocks/i-jz-forms/i-jz-forms.js:	src/JZ.js \
-									src/JZ.js \
-									src/JZ/Observable.js \
-									src/JZ/Widget.js \
-									src/JZ/Widget/Input.js \
-									src/JZ/Widget/Input/Text.js \
-									src/JZ/Widget/Input/Text/Number.js \
-									src/JZ/Widget/Input/Text/Combo.js \
-									src/JZ/Widget/Input/Select.js \
-									src/JZ/Widget/Input/State.js \
-									src/JZ/Widget/Button.js \
-									src/JZ/Widget/Button/Submit.js \
-									src/JZ/Widget/Container.js \
-									src/JZ/Widget/Container/StateGroup.js \
-									src/JZ/Widget/Container/StateGroup/CheckBoxes.js \
-									src/JZ/Widget/Container/StateGroup/RadioButtons.js \
-									src/JZ/Widget/Container/Date.js \
-									src/JZ/Widget/Container/Date/Time.js \
-									src/JZ/Widget/Container/Form.js \
-									src/JZ/Storage.js \
-									src/JZ/Storage/Local.js \
-									src/JZ/Storage/Remote.js \
-									src/JZ/Value.js \
-									src/JZ/Value/Number.js \
-									src/JZ/Value/Multiple.js \
-									src/JZ/Value/Date.js \
-									src/JZ/Value/Date/Time.js \
-									src/JZ/Dependence.js \
-									src/JZ/Dependence/Composition.js \
-									src/JZ/Dependence/Composition/NOT.js \
-									src/JZ/Dependence/Composition/OR.js \
-									src/JZ/Dependence/Composition/AND.js \
-									src/JZ/Dependence/Required.js \
-									src/JZ/Dependence/Valid.js \
-									src/JZ/Dependence/Enabled.js \
-									src/JZ/Builder.js \
-									src/JZ/Resources.js \
-									src/init.js
-	mkdir -p blocks/i-jz-forms
+blocks/i-jz-forms/i-jz-forms.js: $(addprefix src/,\
+	JZ.js\
+	$(addprefix JZ/,\
+		Observable.js \
+		Widget.js \
+		$(addprefix Widget/,\
+			Input.js \
+			Input/Text.js \
+			Input/Text/Number.js \
+			Input/Text/Combo.js \
+			Input/Select.js \
+			Input/State.js \
+			Button.js \
+			Button/Submit.js \
+			Container.js \
+			Container/StateGroup.js \
+			Container/StateGroup/CheckBoxes.js \
+			Container/StateGroup/RadioButtons.js \
+			Container/Date.js \
+			Container/Date/Time.js \
+			Container/Form.js) \
+		Storage.js \
+		Storage/Local.js \
+		Storage/Remote.js \
+		Value.js \
+		Value/Number.js \
+		Value/Multiple.js \
+		Value/Date.js \
+		Value/Date/Time.js \
+		Dependence.js \
+		Dependence/Composition.js \
+		Dependence/Composition/NOT.js \
+		Dependence/Composition/OR.js \
+		Dependence/Composition/AND.js \
+		Dependence/Required.js \
+		Dependence/Valid.js \
+		Dependence/Enabled.js \
+		Builder.js \
+		Resources.js) \
+	init.js)
+	mkdir -p $(@D)
 	cat $^ > $@
 
-%.js:
-	@echo $@
-
 src:
-	svn co http://jz-forms.googlecode.com/svn/trunk/js/ src
+	svn co http://jz-forms.googlecode.com/svn/trunk/js/ $@
