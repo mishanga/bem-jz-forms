@@ -1,6 +1,18 @@
 all: i-jz-forms
 
-i-jz-forms: blocks/i-jz-forms
+i-jz-forms: blocks/i-jz-forms blocks/i-jquery
+
+blocks/i-jquery: 	src \
+					blocks/i-jquery/__memoize/i-jquery__memoize.js \
+					blocks/i-jquery/__fieldselection/i-jquery__fieldselection.js
+
+blocks/i-jquery/__memoize/i-jquery__memoize.js:
+	mkdir -p blocks/i-jquery/__memoize
+	cp src/jquery/jquery.memoize.js blocks/i-jquery/__memoize/i-jquery__memoize.js
+
+blocks/i-jquery/__fieldselection/i-jquery__fieldselection.js:
+	mkdir -p blocks/i-jquery/__fieldselection
+	cp src/jquery/jquery.fieldselection.js blocks/i-jquery/__fieldselection/i-jquery__fieldselection.js
 
 blocks/i-jz-forms: src blocks/i-jz-forms/i-jz-forms.js
 
