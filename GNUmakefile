@@ -9,11 +9,11 @@ blocks/i-jquery: $(JQUERY_FILES)
 
 $(JQUERY_FILES):
 	mkdir -p $(@D)
-	cp src/jquery/$(subst i-jquery__,jquery.,$(@F)) $@
+	cp src/js/jquery/$(subst i-jquery__,jquery.,$(@F)) $@
 
 blocks/i-jz-forms: blocks/i-jz-forms/i-jz-forms.js
 
-blocks/i-jz-forms/i-jz-forms.js: $(addprefix src/,\
+blocks/i-jz-forms/i-jz-forms.js: $(addprefix src/js/,\
 	JZ.js\
 	$(addprefix JZ/,\
 		Observable.js \
