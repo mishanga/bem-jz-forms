@@ -1,0 +1,15 @@
+block i-jz-form {
+
+    js: true,
+
+    tag: 'form',
+
+    attrs: {
+        var a = {
+                action: this.ctx.action || '',
+                method: this.ctx.method || 'GET'
+            };
+        return a;
+    }
+
+}
