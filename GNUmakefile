@@ -1,7 +1,7 @@
-all: i-jz-forms
+all: i-jz-form
 
-i-jz-forms :: src
-i-jz-forms :: blocks/i-jz-forms blocks/i-jquery
+i-jz-form :: src
+i-jz-form :: blocks/i-jz-form blocks/i-jquery
 
 JQUERY_FILES=$(foreach I,memoize fieldselection,blocks/i-jquery/__$I/i-jquery__$I.js)
 
@@ -11,9 +11,9 @@ $(JQUERY_FILES):
 	mkdir -p $(@D)
 	cp src/js/jquery/$(subst i-jquery__,jquery.,$(@F)) $@
 
-blocks/i-jz-forms: blocks/i-jz-forms/i-jz-forms__core.js
+blocks/i-jz-form: blocks/i-jz-form/i-jz-form__core.js
 
-blocks/i-jz-forms/i-jz-forms__core.js: $(addprefix src/js/,\
+blocks/i-jz-form/i-jz-form__core.js: $(addprefix src/js/,\
 	JZ.js\
 	$(addprefix JZ/,\
 		Observable.js \
