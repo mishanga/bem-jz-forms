@@ -10,6 +10,7 @@
                 'memoize',
                 'fieldselection'
             ]
-        }
+        },
+        { elem: 'core' }
     ]
 })
