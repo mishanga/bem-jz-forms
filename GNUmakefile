@@ -64,4 +64,4 @@ DO_GIT=@echo git $1 $2; \
 	fi
 
 src:
-	$(call DO_GIT,git://github.com/mishanga/jz-forms.git,$@)
+	$(call DO_GIT,git://github.com/dfilatov/jz.git,$@)
