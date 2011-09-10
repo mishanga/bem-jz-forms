@@ -3,7 +3,6 @@
         {
             block: 'i-jquery',
             elems: [
-                'context',
                 'inherit',
                 'debounce',
                 'identify',
